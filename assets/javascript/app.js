@@ -247,6 +247,41 @@ $(document).ready(function () {
     });
   }
 
+  $('.submit-date').on('click', function (event) {
+    var mapGenerate = $('<div>');
+    mapGenerate.attr('id', 'loc');
+    mapGenerate.attr('height', 200);
+    mapGenerate.attr('width', 200);
+    mapGenerate.attr('background-color', 'blue');
+
+    console.log(mapGenerate);
+
+    var locationLat = currentEvent[i].location.lat;
+    var locationLong = currentEvent[i].location.lng;
+    mapboxgl.accessToken = 'pk.eyJ1IjoiY2o3ODUiLCJhIjoiY2ppYXl4azU5MWNhejNrazJlbmRuOTEwciJ9.SdH4eVQ3k9Sl-VUwx7Qo7Q';
+    var newMap = new mapboxgl.Map({
+        container: mapId,
+        style: 'mapbox://styles/mapbox/streets-v9',
+        center: [locationLat, locationLong],
+        zoom: 10
+    });
+
+    newMap.addControl(new MapboxDirections({
+        accessToken: mapboxgl.accessToken
+    }), 'top-right');
+
+    //adds the zoom buttons to the map 
+    var nav = new mapboxgl.NavigationControl(); newMap.addControl(nav, 'top-right');
+
+    //adds the user geo-locate button to the map 
+    newMap.addControl(new mapboxgl.GeolocateControl({ positionOptions: { enableHighAccuracy: true } }));
+    newMap.empty();
+    $('#loc').append(newMap);
+    $('#newMap').append(mapGenerate);
+
+});
+   
+
   // used in testing - will delete this function later
   // submitArtist.on("click", function (event) {
   //   // Preventing the button from trying to submit the form
@@ -268,4 +303,3 @@ $(document).ready(function () {
     searchForEvents();
   });
 });
-
