@@ -1,0 +1,53 @@
+
+.containerTop {
+      position: relative;
+      text-align: center;
+      color: white;
+  }
+
+.centered {
+      position: static;
+      bottom: 4px;
+      right: 16px;
+}
+
+
+#aboutCLM {
+      text-align: right; 
+      position: relative; 
+
+}
+  
+.top-left {
+      position: absolute;
+      top: 8px;
+      left: 16px;
+  }
+
+
+#bordermap {
+    border: 5px solid black;
+
+    position: -webkit-sticky;
+    position: sticky;
+    padding: 30px; 
+      /* position: absolute; */
+    border:  30px;
+    left: 350px;
+}
+      
+.colTitle {
+    color: white;
+}
+      
+      
+.pos {
+      position: absolute;
+      left: 150px;
+      top: 250px;
+      }
+      
+
+
+
+     

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset- "UTF-8">
+  <title>GroupProject1</title>
+  <link href="assets/css/style.css" rel="stylesheet"> 
+  
+  <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+  <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" -->
+    <!-- crossorigin="anonymous"> -->
+  <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+   <link href="https://fonts.googleapis.com/css?family=Luckiest+Guy" rel="stylesheet">
+
+   <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="assets/javascript/groupProjectOne.js"></script>
+
+
+
+</head>
+<!-- background colors -->
+<body style= "background: linear-gradient( to right,black,  rgb(97, 62, 78))">
+
+
+<!--  Top of Page with Title and Photo-->
+<div>
+    <div class="containerTop">
+        <!-- <img src="assets/images/ohio-CLM.png" alt="CLMlogo" style="width:10%"> -->
+       
+        <img src="2cleveland-skyline-at-night-evening-panorama-jon-holiday.jpg" alt="Cleveland" style="width:100%;"> 
+       <!-- <div class="top-left"><h1>  C          •          L          •          M <h/1></div> --> 
+
+        <!-- <div class="top-left"></div> </div>  -->
+
+        <div class="centered">
+        <h4>  Looking for an evening of Live Music in Norheast Ohio... Select a date below and see who is performing tonight....  </h4> 
+        <h3>c         l        e        v        e         l         a         n        d        •        l        i        v        e        •        m        u        s        i        c<h/3></div>
+   
+    </div>
+
+
+
+<!-- Calendar for user to pick date -->
+<!-- Button to trigger modal -->
+<a href="#myModal" role="button" class="btn" data-toggle="modal">Launch demo modal</a>
+ 
+<!-- Modal -->
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Modal header</h3>
+  </div>
+  <div class="modal-body">
+    <div id="datetimepicker1" class="input-append date">
+      <input data-format="dd/MM/yyyy hh:mm:ss" type="text"></input>
+      <span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar"></i></span>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+  </div>
+</div>
+
+    
+<!-- Table to show bands and info--> 
+<!-- On rows -->
+<div>
+        <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col" class="picture"> </th>
+                    <th scope="col" class="colTitle">Artist • Band</th>
+                    <th scope="col" class="colTitle">Venue</th>
+                    <th scope="col" class="colTitle">Time</th>
+                    <th scope="col" class="colTitle">Map • Location</th>
+                  </tr>
+                </thead>
+                <tbody id="event-body">
+                  
+                  
+                </tbody>
+              </table>
+
+
+
+</div>
+
+
+
+
+
+<!-- Map -->
+    <div id="bordermap">
+        <div class="mapouter"><div class="gmap_canvas"><iframe width="400" height="300" id="gmap_canvas" src="https://maps.google.com/maps?q=cleveland%20oh&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://www.webdesign-muenchen-pb.de">webdesign-muenchen-pb.de</a></div><style>.mapouter{text-align:right;height:500px;width:600px;}.gmap_canvas {overflow:hidden;background:none!important;height:500px;width:600px;}</style></div>
+        <!-- <div id='map' style='width: 400px; height: 300px; position: absolute; right: 0px; padding: 10px;'> </div> -->
+  
+    </div>
+
+
+
+</div>
+
+
+
+
+
+
+
+</div>
+
+
+
+
+</body>
+
+</html>
