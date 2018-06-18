@@ -1,37 +1,41 @@
+//  javascript / JQuery Project 1 - Cleveland Live Music
+//  Brian Macauley, Jason Way, Stacie Knisley, Rhonda Johnson 
+
 // set document so everything is down loaded before game begins.
 $(document).ready(function () {
 
   var eventBody = $("#event-body");
   var submitDate = $("#submit-date");
   var submitArtist = $("#submit-artist");
+  var noEvents = $('#no-events');
   var currentHeadliner,
     headlinerID;
+  var newDate;
 
-  // $(function () {
-  //   $('#datetimepicker1').datetimepicker({
-  //     language: 'pt-BR'
-  //   });
-  // });
+  // set accessToken for the Mapbox API
+  mapboxgl.accessToken = 'pk.eyJ1IjoiY2o3ODUiLCJhIjoiY2ppYXl4azU5MWNhejNrazJlbmRuOTEwciJ9.SdH4eVQ3k9Sl-VUwx7Qo7Q';
 
-  // $(function () {
-  //   $('#datetimepicker').datetimepicker({
-  //     minDate: new Date(),
-  //     disabledDates: [new Date()],
-  //     inline: true,
-  //     sideBySide: false
-  //   });
-  //   $('#datetimepicker').on('dp.change', function (event) {
-  //     //console.log(moment(event.date).format('MM/DD/YYYY h:mm a'));
-  //     //console.log(event.date.format('MM/DD/YYYY h:mm a'));
-  //     $('#selected-date').text(event.date);
-  //     var formatted_date = event.date.format('MM/DD/YYYY');
-  //     $('#my_hidden_input').val(formatted_date);
-  //     $('#hidden-val').text($('#my_hidden_input').val());
-  //   });
-  // });
-
+  // display calendar / datepicker
   $(function () {
     $('#datetimepicker1').datetimepicker();
+  });
+
+  // calendar / datepicker
+  $(function () {
+    $('#datetimepicker').datetimepicker({
+      inline: true,
+      sideBySide: false,
+      minDate: new Date(),
+      disabledDates: [new Date()],
+    });
+  });
+
+  // when user clicks to change to new date, display currently selected date
+  $('#datetimepicker').on('dp.change', function (event) {
+    $('#selected-date').text(event.date);
+    var formatted_date = event.date.format('MM/DD/YYYY');
+    $('.date').val(formatted_date);
+    $('#hidden-val').text($('.date').val());
   });
 
 
@@ -45,10 +49,10 @@ $(document).ready(function () {
     // number of performers for the current event
     numberOfPerformers = artistArray.length;
 
-    //DO WE WANT TO LIMIT THE NUMBER OF PERFORMERS TO DISPLAY??????????
-    // if (numberOfPerformers > 5) {
-    //   numberOfPerformers = 5;
-    // }
+    // Limit the number of displayed performers
+    if (numberOfPerformers > 5) {
+      numberOfPerformers = 5;
+    }
 
     for (var j = 0; j < numberOfPerformers; j++) {
       var currentBand = artistArray[j].displayName;
@@ -103,9 +107,7 @@ $(document).ready(function () {
     // if a facebook url was provided, set the href attribute else append text message
     if (!(facebookLink == '') && !(facebookLink == null)) {
       anchorElement.attr("href", facebookLink).attr("target", "_blank");
-    }
     else {
-      anchorElement.append('No facebook url');
     }
 
     // empty the element then append the image as a link to the facebook page
@@ -119,9 +121,14 @@ $(document).ready(function () {
   //   counter: counter for the date's event number - needed to identify the id of the correct <td>
   function searchForArtistImage(artist, counter) {
 
+    // replace any apostrophe's with nothing
+    var formatArtist = artist.replace("'", "");
+    formatArtist = formatArtist.replace('[', '');
+    formatArtist = formatArtist.replace(']', '');
+    formatArtist = formatArtist.replace('/', '');
+
     // create query for ajax call to bandsintown
-    //var queryURL = "https://rest.bandsintown.com/artists/" + artist + "?app_id=codingbootcamp";
-    var queryURL = "https://rest.bandsintown.com/artists/" + artist + "?app_id=497d1bb241a11126c75fcc445e45e407";
+    var queryURL = "https://rest.bandsintown.com/artists/" + formatArtist + "?app_id=497d1bb241a11126c75fcc445e45e407";
 
     $.ajax({
       url: queryURL,
@@ -146,14 +153,13 @@ $(document).ready(function () {
   // function to search for the events on the date selected by the user
   // uses the songkick API to find the events in the Cleveland metro area (id - 14700)
   // max and min date filters to events on the date selected by the user
-  function searchForEvents() {
+  function searchForEvents(currentDate) {
+    noEvents.empty();
     eventBody.empty();
-    var currentDate = "2018-06-16";
 
-    // clean up these queryURL strings later
-    //var queryURL = 'https://api.songkick.com/api/3.0/artists/217815/calendar.json?apikey=io09K9l3ebJxmxe2';
-    //var queryURL='https://api.songkick.com/api/3.0/search/locations.json?location=geo:41.49,-81.6944&apikey=fBumaIA9ozKvmLJA';
-    //var queryURL='https://api.songkick.com/api/3.0/artists/217815/gigography.json?apikey=fBumalA9ozKvmLJA&min_date=2018-06-01&max_date=2018-06-05';
+    // for songkick, the date needs to be in the formst "YYYY-MM-DD"
+
+    // set songkick query string
     var queryURL = "https://api.songkick.com/api/3.0/metro_areas/14700/calendar.json?apikey=fBumaIA9ozKvmLJA&min_date=" +
       currentDate + "&max_date=" + currentDate;
 
@@ -161,7 +167,30 @@ $(document).ready(function () {
       url: queryURL,
       method: "GET"
     }).then(function (response) {
-      console.log(response);
+
+      //create a new table row with correct table data elements
+      var newRow = $("<tr>"),
+        newPic = $('<td data-title="Band Photo">'),           // band image
+        newEvent = $("<td data-title='Event'>"),         // event
+        newArtist = $("<td data-title='Artist • Band'>"),        // list of all artists at the event
+        newVenue = $("<td data-title='Venue'>"),         // venue for the event
+        newTime = $("<td data-title='Time'>"),          // start time for the event
+        newMap = $("<td data-title='Map • Location'>");           // map for location of the event
+      var numberOfEntries = response.resultsPage.totalEntries;
+
+      if (numberOfEntries == 0) {
+        noEvents.html("<h2>NO EVENTS ON SELECTED DATE</h2>");
+        noEvents.css({
+          'text-align': 'center',
+          'font-weight': 'bold',
+          'color': 'red',
+          'background-color': 'white'
+        });
+
+        // console.log("No Events on that date");
+
+        return;
+      }
 
       // find number of events returned by the API call
       var numberOfEvents = response.resultsPage.results.event.length;
@@ -181,10 +210,10 @@ $(document).ready(function () {
         var locationLong = currentEvent[i].location.lng;
 
         // for testing - remove later - displays performer's name and headliner or support
-        for (var j = 0; j < artistPerformance.length; j++) {
-          var artistInfo = artistPerformance[j];
-          console.log("in loop artist Displayname--> " + artistInfo.displayName + " **TYPE--> " + artistInfo.billing);
-        }
+        // for (var j = 0; j < artistPerformance.length; j++) {
+        //   var artistInfo = artistPerformance[j];
+        //   console.log("in loop artist Displayname--> " + artistInfo.displayName + " **TYPE--> " + artistInfo.billing);
+        // }
 
         // retrieve start time - original format - 18:00:00 (military time)
         var startTime = currentEvent[i].start.time;
@@ -199,19 +228,17 @@ $(document).ready(function () {
 
         //create a new table row with correct table data elements
         var newRow = $("<tr>"),
-          newPic = $("<td>"),           // band image
-          newEvent = $("<td>"),         // event
-          newArtist = $("<td>"),        // list of all artists at the event
-          newVenue = $("<td>"),         // venue for the event
-          newTime = $("<td>"),          // start time for the event
-          newMap = $("<td>");           // map for location of the event
+        newPic = $('<td data-title="Band Photo">'),           // band image
+        newEvent = $("<td data-title='Event'>"),         // event
+        newArtist = $("<td data-title='Artist • Band'>"),        // list of all artists at the event
+        newVenue = $("<td data-title='Venue'>"),         // venue for the event
+        newTime = $("<td data-title='Time'>"),          // start time for the event
+        newMap = $("<td data-title='Map • Location'>");           // map for location of the event
 
-        // used for testing - take out later
-        //newRow.attr('data-row', i);
-        //newPic.attr('data-event', i);
 
-        // set an id to access the <td> that holds the headliner image
+        // set an id to access the <td> that holds the headliner image & the map
         newPic.attr('id', 'pic-' + i);
+        newMap.attr('id', 'map-' + i);
 
         // set <td> for the event
         newEvent.text(currentEvent[i].displayName)
@@ -220,12 +247,14 @@ $(document).ready(function () {
         // set <td> for the venue
         newVenue.text(currentEvent[i].venue.displayName);
 
-        // set <td> for start time
-        newTime.text(formatStartTime);
+        // set <td> for start time & date
+        newTime.append(formatStartTime).append('<br/>').append(newDate);
+
 
         // modify with map info
         // set <td> for map
-        newMap.text("Map");
+        newMap.attr('data-lat', locationLat);
+        newMap.attr('data-long', locationLong);
 
         // create a list of performer at the event for <td>
         // parameter: artistPerformance array
@@ -243,63 +272,110 @@ $(document).ready(function () {
         //    i: need the performer counter to identify <td> piture element for the correct row
         searchForArtistImage(currentHeadliner, i);
 
+        addMap(locationLat, locationLong, i);
+
       }
     });
   }
 
-  $('.submit-date').on('click', function (event) {
-    var mapGenerate = $('<div>');
-    mapGenerate.attr('id', 'loc');
-    mapGenerate.attr('height', 200);
-    mapGenerate.attr('width', 200);
-    mapGenerate.attr('background-color', 'blue');
+  // function to add the smaller map to the event row
+  function addMap(lat, long, counter) {
+    var element = $('#map-' + counter);
+    var mapDiv = $('<div>');
+    var mapAnchor = $('<a>');
 
-    console.log(mapGenerate);
+    // <a>: when user clicks on the small map, a larger map will open in a modal
+    // set attributes for <a> element
+    mapAnchor.attr('href', '#mapModal');
+    mapAnchor.attr('rel', 'modal:open');
+    mapAnchor.attr('class', 'click-map');
+    mapAnchor.attr('data-lat', lat);
+    mapAnchor.attr('data-long', long);
 
-    var locationLat = currentEvent[i].location.lat;
-    var locationLong = currentEvent[i].location.lng;
-    mapboxgl.accessToken = 'pk.eyJ1IjoiY2o3ODUiLCJhIjoiY2ppYXl4azU5MWNhejNrazJlbmRuOTEwciJ9.SdH4eVQ3k9Sl-VUwx7Qo7Q';
-    var newMap = new mapboxgl.Map({
-        container: mapId,
-        style: 'mapbox://styles/mapbox/streets-v9',
-        center: [locationLat, locationLong],
-        zoom: 10
+    // set attributes for the smaller map that will displayin the table
+    mapDiv.attr('id', 'loc-' + counter);
+    mapDiv.attr('height', 200);
+    mapDiv.attr('width', 200);
+    mapDiv.attr('class', 'venue-map');
+    mapDiv.attr('data-lat', lat);
+    mapDiv.attr('data-long', long);
+
+    // append the mapDiv to the mapAnchor then append to the correct map element
+    mapAnchor.append(mapDiv);
+    element.append(mapAnchor);
+
+    // set correct container id for the map
+    var mapContainer = 'loc-' + counter;
+
+    // create map of the venue location using MapBox
+    // the latitude and longitude of the venue was found in SongKick API
+    //mapboxgl.accessToken = 'pk.eyJ1IjoiY2o3ODUiLCJhIjoiY2ppYXl4azU5MWNhejNrazJlbmRuOTEwciJ9.SdH4eVQ3k9Sl-VUwx7Qo7Q';
+    var venueMap = new mapboxgl.Map({
+      container: mapContainer,
+      style: 'mapbox://styles/mapbox/streets-v9',
+      center: [long, lat],
+      zoom: 15
     });
 
-    newMap.addControl(new MapboxDirections({
-        accessToken: mapboxgl.accessToken
-    }), 'top-right');
+    // create purple dot as the map marker
+    var dot = document.createElement('div');
+    dot.className = 'marker';
+    dot.style.backgroundColor = 'purple';
+    dot.style.width = '20px';
+    dot.style.height = '20px';
 
-    //adds the zoom buttons to the map 
-    var nav = new mapboxgl.NavigationControl(); newMap.addControl(nav, 'top-right');
+    // add marker to map
+    new mapboxgl.Marker(dot)
+      .setLngLat([long, lat])
+      .addTo(venueMap);
+  }
 
-    //adds the user geo-locate button to the map 
-    newMap.addControl(new mapboxgl.GeolocateControl({ positionOptions: { enableHighAccuracy: true } }));
-    newMap.empty();
-    $('#loc').append(newMap);
-    $('#newMap').append(mapGenerate);
+  // open modal with larger map when click on the small map
+  // Used table "eventBody" since that is the closest static (not dynamically created) element
+  eventBody.on("click", "a.click-map", function () {
 
-});
-   
+    // get the latitude and longitude values for the venue
+    // values are stored as data-lat & data-long on the <a> element with a class of 'click-map'
+    var currentLat = ($(this).attr("data-lat"));
+    var currentLong = ($(this).attr("data-long"));
 
-  // used in testing - will delete this function later
-  // submitArtist.on("click", function (event) {
-  //   // Preventing the button from trying to submit the form
-  //   event.preventDefault();
+    //mapboxgl.accessToken = 'pk.eyJ1IjoiY2o3ODUiLCJhIjoiY2ppYXl4azU5MWNhejNrazJlbmRuOTEwciJ9.SdH4eVQ3k9Sl-VUwx7Qo7Q';
 
-  //   //var myartist = 'Shania Twain';
-  //   //var myartist = 'Hello Luna';
-  //   var myartist = 'Kenny Chesney';
-  //   searchForArtist(myartist);
-  // });
+    // create the larger map that will be placed in the modal
+    var bigmap = new mapboxgl.Map({
+      container: 'bigmap',
+      style: 'mapbox://styles/mapbox/streets-v9',
+      center: [currentLong, currentLat],
+      zoom: 15
+    });
 
+    // create red big marker for the big map
+    var big = document.createElement('div');
+    big.className = 'marker';
+    big.style.backgroundColor = 'red';
+    big.style.width = '20px';
+    big.style.height = '20px';
 
-  // at this point in time, I just have a submit button - will need to incorporate the calender
-  // when user selects a date, call the searchForEvents function to find music events in the Cleveland metro area
+    // add marker to map
+    new mapboxgl.Marker(big)
+      .setLngLat([currentLong, currentLat])
+      .addTo(bigmap);
+  });
+
+  // when user submits a date, call the searchForEvents function to find music events in the Cleveland metro area
   submitDate.on("click", function (event) {
     // Preventing the button from trying to submit the form
     event.preventDefault();
+    // set the date selected from the calendar
+    // the date selected is currently in the format "MM/DD/YYY"
+    newDate = $("#hidden-val").text().trim();
 
-    searchForEvents();
+    var randomFormat = "MM/DD/YYYY";
+    var convertedDate = moment(newDate, randomFormat);
+
+    // format date for the songkick API
+    var formattedDate = moment(convertedDate).format("YYYY-MM-DD");
+
+    searchForEvents(formattedDate);
   });
 });
