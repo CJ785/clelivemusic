@@ -1,131 +1,131 @@
 <!--  html Project 1 - Cleveland Live Music
       Brian Macauley, Jason Way, Stacie Knisley, Rhonda Johnson -->
 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset- "UTF-8">
-  <title>GroupProject1</title>
-
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css"
-  />
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.12.0/moment.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
-
-  <!--links for Mapbox-->
-  <script src='https://api.mapbox.com/mapbox-gl-js/v0.45.0/mapbox-gl.js'></script>
-  <link href='https://api.mapbox.com/mapbox-gl-js/v0.45.0/mapbox-gl.css' rel='stylesheet' />
-
-
-  <!-- links for jQuery Modal -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
-
-
-  <!-- Custom css and javascript -->
-  <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-  <script src="assets/javascript/app.js"></script>
-
-</head>
-<!-- background colors -->
-
-<body>
-  <!--  Top of Page with Title and Photo-->
-  <div>
-    <div class="containerTop">
-      <img src="assets/images/twocleveland.jpg" alt="Cleveland Skyline" style="width:100%;">
-
+      <!DOCTYPE html>
+      <html lang="en">
       
-
-    </div>
-
-    <!-- Modal div - will not display until the modal is triggered by clicking on a map -->
-    <div id='mapModal' class="modal" width='100%' height='100%' style='z-index:99'>
-      <p id='bigmap'></p>
-      <a href="#" rel="modal:close">Close</a>
-    </div>
-
-    <div class="container" style="margin-top:20px;">
-      <div class="row">
-        <div class="col-sm-12">
-          <div class="centered">
-            <h3 style="color:#ffffff;"> Looking for an evening of Live Music in Northeast Ohio... Select a date below and see who is performing....
-            </h3>
+      <head>
+        <meta charset- "UTF-8">
+        <title>GroupProject1</title>
+      
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css"
+        />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.12.0/moment.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+      
+        <!--links for Mapbox-->
+        <script src='https://api.mapbox.com/mapbox-gl-js/v0.45.0/mapbox-gl.js'></script>
+        <link href='https://api.mapbox.com/mapbox-gl-js/v0.45.0/mapbox-gl.css' rel='stylesheet' />
+      
+      
+        <!-- links for jQuery Modal -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+      
+      
+        <!-- Custom css and javascript -->
+        <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+        <script src="assets/javascript/app.js"></script>
+      
+      </head>
+      <!-- background colors -->
+      
+      <body>
+        <!--  Top of Page with Title and Photo-->
+        <div>
+          <div class="containerTop">
+            <img src="assets/images/twocleveland.jpg" alt="Cleveland Skyline" style="width:100%;">
+      
+            
+      
           </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-12">   
-          <h4 style='color:white'>Select a Date:
-            <span id="hidden-val"></span>
-          </h4>
-        </div>
-      </div>
-    </div>
-
-    <!-- container for calendar/date-picker -->
-    <div class="container" id='datepicker-container'>
-      <div class="row">
-        <div class='col-sm-12'>
-          <div class="form-group">
+      
+          <!-- Modal div - will not display until the modal is triggered by clicking on a map -->
+          <div id='mapModal' class="modal" width='100%' height='100%' style='z-index:99'>
+            <p id='bigmap'></p>
+            <a href="#" rel="modal:close">Close</a>
+          </div>
+      
+          <div class="container" style="margin-top:20px;">
             <div class="row">
-              <div class="col-md-8">
-                <div class='date' id='datetimepicker'>
-                  <span class="input-group">
-                  </span>
+              <div class="col-sm-12">
+                <div class="centered">
+                  <h3 style="color:#ffffff;"> Looking for an evening of Live Music in Northeast Ohio... Select a date below and see who is performing....
+                  </h3>
                 </div>
               </div>
             </div>
+            <div class="row">
+              <div class="col-sm-12">   
+                <h4 style='color:white'>Select a Date:
+                  <span id="hidden-val"></span>
+                </h4>
+              </div>
+            </div>
+          </div>
+      
+          <!-- container for calendar/date-picker -->
+          <div class="container" id='datepicker-container'>
+            <div class="row">
+              <div class='col-sm-12'>
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col-md-8">
+                      <div class='date' id='datetimepicker'>
+                        <span class="input-group">
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+      
+            <!-- Submit date button-->
+            <button id="submit-date" class="btn btn-warning">SUBMIT DATE</button>
+      
+            <br>
+            <br>
+      
+            <!-- Table to show the date's events and  info-->
+            <!-- In rows -->
+            <div id="no-more-tables">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col" id="picture" "colTitle"></th>
+                    <th scope="col" class="colTitle">Event</th>
+                    <th scope="col" class="colTitle">Artist • Band</th>
+                    <th scope="col" class="colTitle">Venue</th>
+                    <th scope="col" class="colTitle">Time</th>
+                    <th scope="col" class="colTitle">Map • Location</th>
+                  </tr>
+                </thead>
+                <tbody id="event-body">
+                  <!-- 
+                  <tr>
+                      <td data-title="Photo"></td>
+                      <td data-title="Event">AUSTRALIAN AGRICULTURAL COMPANY LIMITED.</td>
+                      <td data-title="Artist • Band">$1.38</td>
+                      <td data-title="Venue">-0.01</td>
+                      <td data-title="Time">-0.36%</td>
+                      <td data-title="Map • Location">$1.39</td>
+                    </tr>
+                  -->
+                </tbody>
+              </table>
+      
+              <!-- div to display message when No Events are on the selected date -->
+              <div id='no-events'></div>
+            </div>
+      
+      
           </div>
         </div>
-      </div>
-
-      <!-- Submit date button-->
-      <button id="submit-date" class="btn btn-warning">SUBMIT DATE</button>
-
-      <br>
-      <br>
-
-      <!-- Table to show the date's events and  info-->
-      <!-- In rows -->
-      <div id="no-more-tables">
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col" id="picture" "colTitle"></th>
-              <th scope="col" class="colTitle">Event</th>
-              <th scope="col" class="colTitle">Artist • Band</th>
-              <th scope="col" class="colTitle">Venue</th>
-              <th scope="col" class="colTitle">Time</th>
-              <th scope="col" class="colTitle">Map • Location</th>
-            </tr>
-          </thead>
-          <tbody id="event-body">
-            <!-- 
-            <tr>
-                <td data-title="Photo"></td>
-                <td data-title="Event">AUSTRALIAN AGRICULTURAL COMPANY LIMITED.</td>
-                <td data-title="Artist • Band">$1.38</td>
-                <td data-title="Venue">-0.01</td>
-                <td data-title="Time">-0.36%</td>
-                <td data-title="Map • Location">$1.39</td>
-              </tr>
-            -->
-          </tbody>
-        </table>
-
-        <!-- div to display message when No Events are on the selected date -->
-        <div id='no-events'></div>
-      </div>
-
-
-    </div>
-  </div>
-
-</body>
-
-</html>
+      
+      </body>
+      
+      </html>

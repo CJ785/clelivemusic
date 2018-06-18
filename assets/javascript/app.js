@@ -107,7 +107,10 @@ $(document).ready(function () {
     // if a facebook url was provided, set the href attribute else append text message
     if (!(facebookLink == '') && !(facebookLink == null)) {
       anchorElement.attr("href", facebookLink).attr("target", "_blank");
+      anchorElement.append('Open Facebook');
+    }
     else {
+      anchorElement.append('No facebook url');
     }
 
     // empty the element then append the image as a link to the facebook page
