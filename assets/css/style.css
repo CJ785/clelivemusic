@@ -1,0 +1,101 @@
+/*  custom style sheet Project 1 - Cleveland Live Music*/
+/*  Brian Macauley, Jason Way, Stacie Knisley, Rhonda Johnson*/
+
+.containerTop {
+      position: relative;
+      text-align: center;
+      color: white;
+  }
+
+.centered {
+      position: static;
+      bottom: 4px;
+      right: 16px;
+}
+
+#aboutCLM {
+      text-align: right; 
+      position: relative; 
+}
+  
+.top-left {
+      position: absolute;
+      top: 8px;
+      left: 16px;
+  }
+
+#selected-date,
+#hidden-val {
+  font-weight: bold;
+  color: #e8e8e8;
+}
+
+td,
+.colTitle{
+      color: white;
+      text-decoration-color: white;
+}
+
+.datepicker.datepicker-inline {
+      border: 5px solid #eee;
+      display: inline-block;
+      position: relative;
+    }
+
+/* add a border to calendar/datepicker*/
+#datetimepicker{
+      border: 5px white;
+      outline: 3px solid white;
+      height: 300px;
+      width: 300px;
+      padding: 10px;
+}
+
+.bootstrap-datetimepicker-widget{
+      background-color: #3c3e43;
+      border: 5px white;
+}
+
+
+/* for the map*/
+canvas.mapboxgl-canvas{
+      width: 100px;
+      height: 100px;
+}
+
+.marker {
+  display: block;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  padding: 0;
+}
+
+
+#map,
+.venue-map {
+  position: relative;
+  top: 0;
+  bottom: 0;
+  width: 50%;
+}
+
+div.venue-map.mapboxgl-map {
+  width: 200px;
+  height: 200px;
+
+}
+
+
+/*div#map.mapboxgl-map {
+  width: 300px;
+  height: 400px;
+
+}*/
+
+#bigmap.mapboxgl-map {
+  width: 100%;
+  height: 400px;
+}
+
+
