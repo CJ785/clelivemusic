@@ -1,64 +1,34 @@
+<!--  html Project 1 - Cleveland Live Music
+      Brian Macauley, Jason Way, Stacie Knisley, Rhonda Johnson -->
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset- "UTF-8">
-  <title>GroupProject1</title>
+  <title>Cleveland Live Music</title>
 
-
-  <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
-  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
-  <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" -->
-  <!-- crossorigin="anonymous"> -->
-
-  <!-- extra -->
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css"
   />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.12.0/moment.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
+  <!--links for Mapbox-->
+  <script src='https://api.mapbox.com/mapbox-gl-js/v0.45.0/mapbox-gl.js'></script>
+  <link href='https://api.mapbox.com/mapbox-gl-js/v0.45.0/mapbox-gl.css' rel='stylesheet' />
 
 
-  <!-- end extra -->
+  <!-- links for jQuery Modal -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 
-  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <link href="https://cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/e8bddc60e73c1ec2475f827be36e1957af72e2ea/build/css/bootstrap-datetimepicker.css"
-    rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css?family=Luckiest+Guy" rel="stylesheet"> -->
+
+  <!-- Custom css and javascript -->
   <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-
-  <!-- Link to Moment.js should go here -->
-  <!-- <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js"></script> -->
-
-
-  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
-
   <script src="assets/javascript/app.js"></script>
-  <!-- <script src="https://cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/e8bddc60e73c1ec2475f827be36e1957af72e2ea/src/js/bootstrap-datetimepicker.js"></script> -->
-
-  <!-- Link to Moment.js should go here -->
-  <!-- <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js"></script> -->
-
-
-  <!-- McCauley's-->
-  <!-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
-<link href="https://cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/e8bddc60e73c1ec2475f827be36e1957af72e2ea/build/css/bootstrap-datetimepicker.css" rel="stylesheet" />
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js"></script>
-<script src="https://cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/e8bddc60e73c1ec2475f827be36e1957af72e2ea/src/js/bootstrap-datetimepicker.js"></script> -->
-
-
-  Add CommentCollapse
-
-
-
-
 
 </head>
 <!-- background colors -->
@@ -66,150 +36,82 @@
 <body style="background: linear-gradient( to right,black,  rgb(97, 62, 78))">
 
 
-
   <!--  Top of Page with Title and Photo-->
   <div>
     <div class="containerTop">
-      <img src="assets/images/cleveland-skyline-at-night-evening-panorama-jon-holiday.jpg" alt="Cleveland" style="width:100%;">
-
-      <!-- <div id="aboutCLM" > <p>  Looking for an evening of Live Music in Norheast Ohio... Select a date below and see who is performing tonight....  </p>  </div> -->
-
-
-      <div class="top-left">
-        <h1> C • L • M
-          <h/1>
-      </div>
-
-
+      <img src="assets/images/twocleveland.jpg" alt="Cleveland" style="width:100%;">
 
       <div class="centered">
-        <p> Looking for an evening of Live Music in Norheast Ohio... Select a date below and see who is performing tonight....
-        </p>
-        <h3>c l e v e l a n d • l i v e • m u s i c
-          <h/3>
+        <h4> Looking for an evening of Live Music in Northeast Ohio... Select a date below and see who is performing....
+        </h4>
       </div>
 
     </div>
 
-    <!-- Calendar for user to pick date -->
-    <!-- Button to trigger modal -->
-    <!--<a href="#myModal" role="button" class="btn" data-toggle="modal">Launch demo modal</a>-->
+    <!-- Modal div - will not display until the modal is triggered by clicking on a map -->
+    <div id='mapModal' class="modal" width='100%' height='100%' style='z-index:99'>
+      <p id='bigmap'></p>
+      <a href="#" rel="modal:close">Close</a>
+    </div>
 
-    <!-- Modal -->
-    <!--<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h3 id="myModalLabel">Modal header</h3>
-      </div>
-      <div class="modal-body">
-        <div id="datetimepicker1" class="input-append date">
-          <input data-format="dd/MM/yyyy hh:mm:ss" type="text"></input>
-          <span class="add-on">
-            <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
-          </span>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-      </div>
-    </div>-->
-
-
-    <!-- calendar -->
     <div>
-      Select a Date:
-      <!-- <span id="selected-date"></span> -->
-      <span id="hidden-val"></span>
-      <!--   <br/>
-        <br/>Value of hidden field:
-        <br/> -->
-      <br>
-      <br>
+      <h3 style='color:white'>Select a Date:
+        <!-- <span id="selected-date"></span> -->
+        <!-- <span id="hidden-val" style="display:none"></span> -->
+        <span id="hidden-val"></span>
+      </h3>
     </div>
-    <div class="col-lg-8 datepicker_area">
-      <div style="overflow:hidden;">
-        <div class="form-group">
-          <div class="row">
-            <div class="col-md-8">
-              <div id="datetimepicker"></div>
-              <input type="hidden" name="date" id="my_hidden_input" value="">
+
+
+    <!-- container for calendar/date-picker -->
+    <div class="container" id='datepicker-container'>
+      <div class="row">
+        <div class='col-sm-12'>
+          <div class="form-group">
+            <div class="row">
+              <div class="col-md-8">
+                <div class='date' id='datetimepicker'>
+                  <span class="input-group">
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
 
+      <!-- Submit date button-->
+      <button id="submit-date" class="btn btn-warning">SUBMIT DATE</button>
 
+      <br>
 
-    <!-- new code -->
-    <!-- <div class="container">
-    <div class="row">
-      <div class='col-sm-6'>
-        <div class="form-group">
-          <div class='input-group date' id='datetimepicker1'>
-            <input type='text' class="form-control" />
-            <span class="input-group-addon">
-              <span class="glyphicon glyphicon-calendar"></span>
-            </span>
-          </div>
-        </div>
+      <!-- Table to show the date's events and  info-->
+      <!-- In rows -->
+      <div>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col" id="picture" "colTitle"></th>
+              <th scope="col" class="colTitle">Event</th>
+              <th scope="col" class="colTitle">Artist • Band</th>
+              <th scope="col" class="colTitle">Venue</th>
+              <th scope="col" class="colTitle">Time</th>
+              <th scope="col" class="colTitle">Map • Location</th>
+            </tr>
+          </thead>
+          <tbody id="event-body">
+
+          </tbody>
+        </table>
+
+        <!-- div to display message when No Events are on the selected date -->
+        <div id='no-events'></div>
       </div>
-    </div>
-  </div> -->
 
-    <!-- Submit button triggers new train to be added -->
-    <button id="submit-date" class="btn btn-success">SUBMIT</button>
-    <!--<button id="submit-artist" class="btn btn-warning">SUBMIT</button>-->
-    <br>
-    <!--<div id="picture-div" class="colTitle">Picture</div>-->
-
-    <!-- Table to show bands and info-->
-    <!-- On rows -->
-    <div>
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col" id="picture" "colTitle"></th>
-            <th scope="col" class="colTitle">Event</th>
-            <th scope="col" class="colTitle">Artist • Band</th>
-            <th scope="col" class="colTitle">Venue</th>
-            <th scope="col" class="colTitle">Time</th>
-            <th scope="col" class="colTitle">Map • Location</th>
-          </tr>
-        </thead>
-        <tbody id="event-body">
-
-        </tbody>
-      </table>
-    </div>
-
-    <!-- Map -->
-    <div id="bordermap">
-      <div class="mapouter">
-        <div class="gmap_canvas">
-          <!--  <iframe width="400" height="300" id="gmap_canvas" src="https://maps.google.com/maps?q=cleveland%20oh&t=&z=13&ie=UTF8&iwloc=&output=embed"
-            frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
-          <a href="https://www.webdesign-muenchen-pb.de">webdesign-muenchen-pb.de</a>-->
-        </div>
-        <style>
-          .mapouter {
-            text-align: right;
-            height: 500px;
-            width: 600px;
-          }
-
-          .gmap_canvas {
-            overflow: hidden;
-            background: none!important;
-            height: 500px;
-            width: 600px;
-          }
-        </style>
-      </div>
-      <!-- <div id='map' style='width: 400px; height: 300px; position: absolute; right: 0px; padding: 10px;'> </div> -->
 
     </div>
   </div>
+
 </body>
 
 </html>

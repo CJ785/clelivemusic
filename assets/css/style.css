@@ -1,3 +1,5 @@
+/*  custom style sheet Project 1 - Cleveland Live Music*/
+/*  Brian Macauley, Jason Way, Stacie Knisley, Rhonda Johnson*/
 
 .containerTop {
       position: relative;
@@ -11,11 +13,9 @@
       right: 16px;
 }
 
-
 #aboutCLM {
       text-align: right; 
       position: relative; 
-
 }
   
 .top-left {
@@ -24,18 +24,10 @@
       left: 16px;
   }
 
-
-  #bordermap {
-      border: 5px solid black;
-
-      position: -webkit-sticky;
-      position: sticky;
-      padding: 30px; 
-      /* position: absolute; */
-      border:  30px;
-      left: 350px;
-       
-
+#selected-date,
+#hidden-val {
+  font-weight: bold;
+  color: #e8e8e8;
 }
 
 td,
@@ -44,65 +36,66 @@ td,
       text-decoration-color: white;
 }
 
-/*  */
-/* 
-<style>
-<background> <img src="assets/images/musical-light-notes-background.jpg.jpg" alt="musical notes" style="width:100% 100%;"></background>
-</style> */ */
-/* body  {  */
-       /* background: linear-gradient (blue, purple); */
-      /* background: linear-gradient(red, yellow); */
-    /* background-image: url("./assets/images/quartzcorchia2.jpg"); */
-    /* background-repeat: no-repeat; */
-    /* color:white; */
+.datepicker.datepicker-inline {
+      border: 5px solid #eee;
+      display: inline-block;
+      position: relative;
+    }
 
-    /* } */
+/* add a border to calendar/datepicker*/
+#datetimepicker{
+      border: 5px white;
+      outline: 3px solid white;
+      height: 300px;
+      width: 300px;
+      padding: 10px;
+}
 
-/* body {
+.bootstrap-datetimepicker-widget{
+      background-color: #3c3e43;
+      border: 5px white;
+}
 
-      background: linear-gradient(to right, purple , yellow);
-      /* background-color: lightblue; */
-  /* }
 
-.display-4 {
-      font-family: "Fantasy", "Comid Sans MS", serif;
-      text-align: center;
+/* for the map*/
+canvas.mapboxgl-canvas{
+      width: 100px;
+      height: 100px;
+}
+
+.marker {
+  display: block;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  padding: 0;
+}
+
+
+#map,
+.venue-map {
+  position: relative;
+  top: 0;
+  bottom: 0;
+  width: 50%;
+}
+
+div.venue-map.mapboxgl-map {
+  width: 200px;
+  height: 200px;
 
 }
-          
-.centered {
-  font-family: "Fantasy",  Arial, sans-serif;
 
 
-} */
+/*div#map.mapboxgl-map {
+  width: 300px;
+  height: 400px;
 
-/* .centered2 {
-      font-family: "Fantasy",  Arial, sans-serif;
-      text-align: right; */
-    
+}*/
 
-/* .subhead { */
-
-      /* text-align: center; */
-      /* font-family: "Times New Roman", Times, serif; */
-      /* font-family: Fantatsy; */
+#bigmap.mapboxgl-map {
+  width: 100%;
+  height: 400px;
+}
 
 
-
-
-                              /* .crystals { */
-          /* display: flex; */
-          /* justify-content: space-around; */
-          /* border: 4px solid red; */
-          /* align-items: center */
-      /* } */
-    
-    
-    /* .crystal { */
-          /* border:6px solid purple; */
-          /* padding: 10px; */
-          /* width: 200px; */
-          /* height:200px */
-      /* } */
-
-     
