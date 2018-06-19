@@ -25,10 +25,11 @@ $(document).ready(function () {
     $('#datetimepicker').datetimepicker({
       inline: true,
       sideBySide: false,
-      minDate: new Date(),
-      disabledDates: [new Date()],
+      minDate: moment(1, 'h'),
     });
   });
+
+
 
   // when user clicks to change to new date, display currently selected date
   $('#datetimepicker').on('dp.change', function (event) {
@@ -59,8 +60,8 @@ $(document).ready(function () {
 
       // if 1st artist (headliner), make text larger and different color
       if (j == 0) {
-        var newBand = $("<h4>");
-        newBand.css('text-decoration', 'underline');
+        var newBand = $("<h5>");
+        // newBand.css('font-weight', 'bold');
         newBand.css('color', 'orange');
 
         // headliner is the 1st performer in the list
@@ -212,12 +213,6 @@ $(document).ready(function () {
         var locationLat = currentEvent[i].location.lat;
         var locationLong = currentEvent[i].location.lng;
 
-        // for testing - remove later - displays performer's name and headliner or support
-        // for (var j = 0; j < artistPerformance.length; j++) {
-        //   var artistInfo = artistPerformance[j];
-        //   console.log("in loop artist Displayname--> " + artistInfo.displayName + " **TYPE--> " + artistInfo.billing);
-        // }
-
         // retrieve start time - original format - 18:00:00 (military time)
         var startTime = currentEvent[i].start.time;
         var formatStartTime = '';
@@ -232,11 +227,11 @@ $(document).ready(function () {
         //create a new table row with correct table data elements
         var newRow = $("<tr>"),
         newPic = $('<td data-title="Band Photo">'),           // band image
-        newEvent = $("<td data-title='Event'>"),         // event
-        newArtist = $("<td data-title='Artist • Band'>"),        // list of all artists at the event
-        newVenue = $("<td data-title='Venue'>"),         // venue for the event
-        newTime = $("<td data-title='Time'>"),          // start time for the event
-        newMap = $("<td data-title='Map • Location'>");           // map for location of the event
+        newEvent = $("<td data-title='Event'>"),              // event
+        newArtist = $("<td data-title='Artist • Band'>"),     // list of all artists at the event
+        newVenue = $("<td data-title='Venue'>"),              // venue for the event
+        newTime = $("<td data-title='Time'>"),                // start time for the event
+        newMap = $("<td data-title='Map • Location'>");       // map for location of the event
 
 
         // set an id to access the <td> that holds the headliner image & the map

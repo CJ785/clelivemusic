@@ -13,6 +13,7 @@ body { background: linear-gradient( to right, black, rgb(97, 62, 78)) }
       position: static;
       bottom: 4px;
       right: 16px;
+      font-weight: 700;
 }
 
 #aboutCLM {
@@ -73,6 +74,20 @@ thead { color:#ffffff; }
       border: 5px white;
 }
 
+.modal a.close-modal {
+    position: absolute;
+    z-index: 99999999;
+    top: 16.5px;
+    right: 16.5px;
+    display: block;
+    width: 30px;
+    height: 30px;
+    text-indent: -9999px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+  /*  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAAA8CAYAAAA6/NlyAAAAAXNSR…o8lCKWUlg/YtGs7tObunDAZfpDLbfEI15zsEIY3U/x/gHHc/G1zltnAgAAAABJRU5ErkJggg==);
+*/}
 
 /* for the map*/
 canvas.mapboxgl-canvas{
@@ -145,7 +160,7 @@ div.venue-map.mapboxgl-map {
     border: none;
     border-bottom: 1px solid #eee; 
     position: relative;
-    padding-left: 30%; 
+    padding-left: 36%; 
     white-space: normal;
     text-align:left;
     
